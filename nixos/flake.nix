@@ -10,9 +10,9 @@
 
   outputs = { self, nixpkgs, disko, ... }@inputs: let
     nodes = [
-      "homelab-0"
-      "homelab-1"
-      "homelab-2"
+      "homelab-nix-k3s-1"
+      "homelab-nix-k3s-2"
+      "homelab-nix-k3s-3"
     ];
   in {
     nixosConfigurations = builtins.listToAttrs (map (name: {
