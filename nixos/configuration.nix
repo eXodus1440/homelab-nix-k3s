@@ -26,7 +26,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "Australia/Brisbane";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -62,10 +62,10 @@
 	    "--disable servicelb"
 	    "--disable traefik"
 	    "--disable local-storage"
-    ] ++ (if meta.hostname == "homelab-0" then [] else [
-	      "--server https://homelab-0:6443"
+    ] ++ (if meta.hostname == "homelab-nix-k3s-1" then [] else [
+	      "--server https://homelab-nix-k3s-1:6443"
     ]));
-    clusterInit = (meta.hostname == "homelab-0");
+    clusterInit = (meta.hostname == "homelab-nix-k3s-1");
   };
 
   services.openiscsi = {
@@ -84,16 +84,16 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.elliott = {
+  users.users.k3s = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
     # Created using mkpasswd
-    hashedPassword = "$6$026yeBrVd8/z.7CJ$e9Fl5oMabKXM6fRC0V7kG/LCZnCyunekKLY4T3Vi/zQXV7PpOcTchDpxr0opnI3zA4.2V9yyu51h1tF.4UoHT1";
+    hashedPassword = "$6$14bmjnEHrp9GSa6M$hi/waJQMmHkzypG9m0iL8JT7cb73fdi0l0Z0OFStEypyObiAvRp5i3GKvcwgTK5b2cMXEZ04P2lcfR/IU9kNc0";
     openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNFZUZg93LySz/1Qdg7WBEBdpnSMjJyJmFwnPikmTHJ/MQWC0Bf5kVyfkLxaU3paeRQnoI4RcG9k8DJGy8hnUdxe2Eg5fWtW0+cJ0zm791WisCTb8bCmTBO9053U59qOA7WTrJAVcTylBsBa7R3CGs6FYlMsu8CXvUWrp4XQ2k83DQlzpgr5r9BNIsfbfswXMSm91i/bRSuxSXu2QpV/9C4wHBUYAGz+hTFw8LJgt/lH6ute2w1ed93/vG4CNI9gv1obecc8rrVGvjZk1Q6sPr8PamBxc7Y4HEYWKPtJPq54UK+b2duUuL2tDYVQmJIvto6how+EZ/oAPxMRK5qHJOn2AJ/z0rcPO6FqyggtKeZATOgFCYSNLLrEwiYvppVNiM/hjFRqpk+BZ+gWE1X+D3xXIDUG1jchMCUQ/2q62CSp/VU/z39IGBxa9eN/k6WsmdlKgeCcx2BtoFKMd0LQqfndduYPcnvn2EzJwLrF0p7LQGIO74jkAQ451IeSoDOvlCe9Y9LAjwH1DG4ve7XwuqpKdJ2LcHirLHxQIONdc906U70TVuQzGOJed5huhKBkbGzDi08VsF8zCO9pMHSJ2ioBWVyNSRUf9wVKtPtUFhmgCHT/l0+xdrCeE8m7sT0Zb8qNjdMDylXQhaPm30f/ievIBe5+81w0Kyoj4kFSzr3Q== cardno:11_070_772"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDq0hmynF4veEAYnYDOWByf6mP1WLQpY+1LM6fCoSJAUSrOyIkYJgG6iM/+JnbKytQLlwjBoZZ/eWBfFhOHw26VG9JfsPRCPqVIY4sNdP0+H7HP5TQAvzT2rarL5R7Y0v/aqa8qzm5vKVONGMrmVZIG4EoH2yBO/mUr/zh9KXszbpdmH5YhaqlPGXk633SSsKO5SDCAi/C8dbt7iZqVBx3Rsp+xD9Ie8KVfZ+3kh0MyoT8YHh6OrxKHm4yT20ZoQwmt11rt5JcQUuBSMMoNVqZFreeQPDJFAv+XpbYRQhNnBaZX7MhfwYWqiZH8QYz9+ckItsJ91dZFk1L+0sbEpxHwaimWA3nGHET0NvgIQEyWKY+GqIEULSGABjMEqpZiLD8n1iq0uzooms/GIzOJY+uoDMfYTAY5OUN7OfgLVZUa4h6f+ZXyGhBfnPC0H397mvKVJXC9p5vs4ldav1+pQcrImFR09EimeAOXFdVFaURyBcz1ou7Q7athXwh1Z12Tjhsr3yow6ZdY5u+zwXGeWFAXM4pEQGXGEMeAq+skT8ZNXbwGyVXDuBuhTi63GhTDVRl7ZzB45t4zdRkNZI7VaNwfUzt2Rz6p/LuUc2jrklS4Tk71s3+tnjnK2ZkTe4aKSFSOO7Qiz7GOLkAumIilApnLAQE1WyEb2V164qgB/Fhjpw=="
     ];
   };
 
