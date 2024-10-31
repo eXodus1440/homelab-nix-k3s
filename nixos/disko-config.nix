@@ -3,7 +3,8 @@
     disk = {
       vdb = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        #device = "/dev/nvme0n1";
+        device = "/dev/vda";
         content = {
           type = "gpt";
           partitions = {
@@ -37,7 +38,7 @@
                     mountpoint = "/home";
                   };
                   # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                  "/home/elliott" = { };
+                  "/home/k3s" = { };
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
                     mountOptions = [ "compress=zstd" "noatime" ];
